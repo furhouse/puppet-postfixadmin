@@ -9,8 +9,12 @@
   "issues_url": "https://git.500k.lan/wim/puppet-postfixadmin.git",
   "dependencies": [
     {
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 1.0.0 < 3.0.0"
+    },
+    {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
+      "version_requirement": ">= 4.6.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
