@@ -50,11 +50,4 @@ class postfixadmin::config inherits postfixadmin {
     }
   }
 
-  cron { 'postfixadmin-cleandb':
-    ensure  => present,
-    command => "${application_dir}/bin/cleandb.sh > /dev/null",
-    user    => 'root',
-    hour    => fqdn_rand(24),
-    minute  => fqdn_rand(60),
-  }
 }

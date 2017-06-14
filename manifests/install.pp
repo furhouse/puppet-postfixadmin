@@ -9,10 +9,25 @@ class postfixadmin::install inherits postfixadmin {
   $download_url = "https://sourceforge.net/projects/postfixadmin/files/postfixadmin/postfixadmin-${postfixadmin::version}/${archive}.tar.gz"
 
   if $postfixadmin::manage_dirs {
-    $dir_dependencies = [ '/var/cache/puppet', $postfixadmin::package_dir, $postfixadmin::install_dir  ]
+    # $dir_dependencies = [ '/var/cache/puppet', $postfixadmin::package_dir, $postfixadmin::install_dir  ]
 
-    file { $dir_dependencies:
-      ensure => directory,
+    file { $postfixadmin::install_dir:
+      ensure => 'directory',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+    }
+    file { $postfixadmin::package_dir:
+      ensure => 'directory',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+    }
+    file { '/var/cache/puppet':
+      ensure => 'directory',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
     }
   }
 
