@@ -9,7 +9,6 @@ class postfixadmin::install inherits postfixadmin {
   $download_url = "https://sourceforge.net/projects/postfixadmin/files/postfixadmin/postfixadmin-${postfixadmin::version}/${archive}.tar.gz"
 
   if $postfixadmin::manage_dirs {
-    # $dir_dependencies = [ '/var/cache/puppet', $postfixadmin::package_dir, $postfixadmin::install_dir  ]
 
     file { $postfixadmin::install_dir:
       ensure => 'directory',
@@ -17,38 +16,39 @@ class postfixadmin::install inherits postfixadmin {
       group  => 'root',
       mode   => '0755',
     }
-    file { $postfixadmin::package_dir:
+    file { $postfixadmin::puppet_cache:
       ensure => 'directory',
       owner  => 'root',
       group  => 'root',
       mode   => '0755',
     }
-    file { '/var/cache/puppet':
-      ensure => 'directory',
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0755',
+    file { $postfixadmin::archive_dir:
+      ensure  => 'directory',
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
+      require => File[$postfixadmin::puppet_cache],
     }
   }
 
   case $postfixadmin::archive_provider {
     'nanliu', 'puppet': {
-      archive { "${postfixadmin::package_dir}/${archive}.tar.gz":
+      archive { "${postfixadmin::archive_dir}/${archive}.tar.gz":
         ensure        => present,
         checksum      => $postfixadmin::checksum,
         checksum_type => $postfixadmin::checksum_type,
         source        => $download_url,
         extract_path  => $postfixadmin::install_dir,
-        creates       => "${postfixadmin::package_dir}/${archive}.tar.gz",
+        creates       => "${postfixadmin::archive_dir}/${archive}.tar.gz",
         extract       => true,
         cleanup       => false,
         extract_flags => '-x --no-same-owner -f',
         require       => [
           File[$postfixadmin::install_dir],
-          File[$postfixadmin::package_dir]
+          File[$postfixadmin::archive_dir]
         ],
       }
-      $require_archive = Archive["${postfixadmin::package_dir}/${archive}.tar.gz"]
+      $require_archive = Archive["${postfixadmin::archive_dir}/${archive}.tar.gz"]
     }
     'camptocamp': {
       archive { $archive:
@@ -58,12 +58,12 @@ class postfixadmin::install inherits postfixadmin {
         url              => $download_url,
         follow_redirects => true,
         target           => $postfixadmin::install_dir,
-        src_target       => $postfixadmin::package_dir,
+        src_target       => $postfixadmin::archive_dir,
         root_dir         => "postfixadmin-${postfixadmin::version}",
         timeout          => 600,
         require          => [
           File[$postfixadmin::install_dir],
-          File[$postfixadmin::package_dir]
+          File[$postfixadmin::archive_dir]
         ],
       }
       $require_archive = Archive[$archive]

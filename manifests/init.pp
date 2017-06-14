@@ -44,7 +44,8 @@ class postfixadmin (
   $process              = $postfixadmin::params::process,
 
   $manage_dirs          = $postfixadmin::params::manage_dirs,
-  $package_dir          = $postfixadmin::params::package_dir,
+  $puppet_cache         = $postfixadmin::params::puppet_cache,
+  $archive_dir          = $postfixadmin::params::archive_dir,
   $install_dir          = $postfixadmin::params::install_dir,
   $exec_paths           = $postfixadmin::params::exec_paths,
   $document_root        = $postfixadmin::params::document_root,
@@ -70,7 +71,8 @@ class postfixadmin (
   validate_string($checksum_type)
   validate_string($process)
   validate_bool($manage_dirs)
-  validate_absolute_path($package_dir)
+  validate_absolute_path($puppet_cache)
+  validate_absolute_path($archive_dir)
   validate_absolute_path($install_dir)
   validate_absolute_path($document_root)
   validate_bool($document_root_manage)
@@ -84,6 +86,6 @@ class postfixadmin (
   validate_string($encrypt)
   validate_hash($options_hash)
 
-  class { 'postfixadmin::install': }
-  -> class { 'postfixadmin::config': }
+  class { '::postfixadmin::install': }
+  -> class { '::postfixadmin::config': }
 }

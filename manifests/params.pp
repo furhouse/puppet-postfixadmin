@@ -9,9 +9,10 @@ class postfixadmin::params {
 
   $archive_provider = 'camptocamp'
 
-  $manage_dirs = false
-  $package_dir = '/var/cache/puppet/archives'
-  $install_dir = '/opt'
+  $manage_dirs  = false
+  $puppet_cache = '/var/cache/puppet'
+  $archive_dir  = '/var/cache/puppet/archives'
+  $install_dir  = '/opt'
 
   $document_root_manage = true
   $document_root = '/var/www/postfixadminmail'

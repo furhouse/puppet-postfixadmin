@@ -2,17 +2,13 @@ fixtures:
   repositories:
     archive:
       repo: "https://github.com/camptocamp/puppet-archive.git"
-      ref: "0.8.1"
+      ref: "0.9.1"
     concat:
       repo: "https://github.com/puppetlabs/puppetlabs-concat.git"
       ref: "2.2.1"
     stdlib:
       repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
       ref: "4.17.0"
-    # transitive dependencies
-    wget:
-      repo: "https://github.com/maestrodev/puppet-wget.git"
-      ref: "v1.7.3"
   symlinks:
     postfixadmin: "#{source_dir}"
 
