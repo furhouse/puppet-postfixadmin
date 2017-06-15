@@ -44,6 +44,7 @@ class postfixadmin (
   $process              = $postfixadmin::params::process,
 
   $manage_dirs          = $postfixadmin::params::manage_dirs,
+  $manage_user          = $postfixadmin::params::manage_user,
   $puppet_cache         = $postfixadmin::params::puppet_cache,
   $archive_dir          = $postfixadmin::params::archive_dir,
   $install_dir          = $postfixadmin::params::install_dir,

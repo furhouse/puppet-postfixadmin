@@ -44,7 +44,6 @@ class postfixadmin::install inherits postfixadmin {
         cleanup       => false,
         extract_flags => '-x --no-same-owner -f',
         require       => [
-          File[$postfixadmin::install_dir],
           File[$postfixadmin::archive_dir]
         ],
       }
@@ -62,7 +61,6 @@ class postfixadmin::install inherits postfixadmin {
         root_dir         => "postfixadmin-${postfixadmin::version}",
         timeout          => 600,
         require          => [
-          File[$postfixadmin::install_dir],
           File[$postfixadmin::archive_dir]
         ],
       }
@@ -70,6 +68,21 @@ class postfixadmin::install inherits postfixadmin {
     }
     default: {
       fail("Unsupported \$archive_provider '${postfixadmin::archive_provider}'. Should be 'camptocamp' or 'nanliu' (aka 'puppet').")
+    }
+  }
+
+  if ($postfixadmin::manage_user) and ($::osfamily == 'RedHat') {
+    group { $postfixadmin::process:
+      ensure => present,
+      system => true,
+    }
+    user { $postfixadmin::process:
+      ensure     => present,
+      shell      => '/sbin/nologin',
+      gid        => $postfixadmin::process,
+      home       => $target,
+      managehome => true,
+      system     => true,
     }
   }
 

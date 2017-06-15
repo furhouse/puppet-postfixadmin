@@ -10,6 +10,7 @@ class postfixadmin::params {
   $archive_provider = 'camptocamp'
 
   $manage_dirs  = false
+  $manage_user  = true
   $puppet_cache = '/var/cache/puppet'
   $archive_dir  = '/var/cache/puppet/archives'
   $install_dir  = '/opt'
@@ -18,7 +19,7 @@ class postfixadmin::params {
   $document_root = '/var/www/postfixadminmail'
   case $::osfamily {
     'RedHat':  {
-      $process = 'httpd'
+      $process = 'postfixadmin'
     }
     'Debian':  {
       $process = 'www-data'
