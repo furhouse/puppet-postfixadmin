@@ -2,7 +2,13 @@ source ENV['GEM_SOURCE'] || "https://rubygems.org"
 
 group :test do
   gem "rake", '< 11.0'
-  gem "puppet", ENV['PUPPET_GEM_VERSION'] || '~> 4.0.0'
+  if puppet_gem_version = ENV['PUPPET_GEM_VERSION']
+    gem "puppet", puppet_gem_version
+  elsif puppet_git_url = ENV['PUPPET_GIT_URL']
+    gem "puppet", :git => puppet_git_url
+  else
+    gem "puppet"
+  end
   gem "rspec", '< 3.2.0'
   gem "rspec-puppet"
   gem "puppetlabs_spec_helper"
@@ -31,7 +37,7 @@ group :development do
 end
 
 group :system_tests do
-  gem "beaker"
+  gem "beaker-puppet_install_helper", :require => false
   gem "beaker-rspec"
-  gem "beaker-puppet_install_helper"
+  gem "beaker", "~> 3.0"
 end

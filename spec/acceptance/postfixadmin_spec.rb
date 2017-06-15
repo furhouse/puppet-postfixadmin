@@ -5,7 +5,7 @@ describe 'postfixadmin class' do
     # Using puppet_apply as a helper
     it 'should work idempotently with no errors' do
       pp = <<-EOS
-      class { 'postfixadmin': }
+        class { '::postfixadmin': manage_dirs => true }
       EOS
 
       # Run it twice and test for idempotency
@@ -13,13 +13,5 @@ describe 'postfixadmin class' do
       apply_manifest(pp, :catch_changes  => true)
     end
 
-    describe package('postfixadmin') do
-      it { is_expected.to be_installed }
-    end
-
-    describe service('postfixadmin') do
-      it { is_expected.to be_enabled }
-      it { is_expected.to be_running }
-    end
   end
 end
