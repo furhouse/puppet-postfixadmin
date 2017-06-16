@@ -16,6 +16,6 @@ matrix:
   fast_finish: true
 branches:
   only:
-  - spec
+  - master
 notifications:
   email: true
