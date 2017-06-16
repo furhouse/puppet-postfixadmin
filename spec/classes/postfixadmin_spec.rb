@@ -25,12 +25,7 @@ describe 'postfixadmin', :type => :class do
         end
 
         context 'with_manage_dirs => true' do
-
-          let(:params) {
-            {
-              :manage_dirs => true
-            }
-          }
+          let(:params) { { :manage_dirs => true } }
 
           it { is_expected.to compile.with_all_deps }
 
@@ -100,14 +95,10 @@ describe 'postfixadmin', :type => :class do
             it { is_expected.to contain_class('postfixadmin::config') }
             it { is_expected.to contain_concat(config_file) }
             it { should contain_concat__fragment(config_file_header) }
-            it { is_expected.to contain_concat__fragment(config_file_options_fragment).with_content(
-                "$CONF['configured'] = false;\n$CONF['database_host'] = 'localhost';\n$CONF['database_name'] = 'postfix';\n$CONF['database_password'] = 'postfix';\n$CONF['database_type'] = 'mysqli';\n$CONF['database_user'] = 'postfix';\n$CONF['encrypt'] = 'dovecot:SHA512-CRYPT';\n"
-              ) }
+            it { is_expected.to contain_concat__fragment(config_file_options_fragment).with_content( "$CONF['configured'] = false;\n$CONF['database_host'] = 'localhost';\n$CONF['database_name'] = 'postfix';\n$CONF['database_password'] = 'postfix';\n$CONF['database_type'] = 'mysqli';\n$CONF['database_user'] = 'postfix';\n$CONF['encrypt'] = 'dovecot:SHA512-CRYPT';\n") }
           end
-
         end
       end
     end
   end
-
 end

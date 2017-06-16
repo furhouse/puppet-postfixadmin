@@ -12,6 +12,5 @@ describe 'postfixadmin class' do
       apply_manifest(pp, :catch_failures => true)
       apply_manifest(pp, :catch_changes  => true)
     end
-
   end
 end
