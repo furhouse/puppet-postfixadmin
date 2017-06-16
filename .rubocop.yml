@@ -169,9 +169,8 @@ Style/ClassAndModuleChildren:
 Style/ClassCheck:
   Enabled: false
 
-# DISABLED - Warning: unrecognized cop Metrics/BlockLength
-# Metrics/BlockLength:
-  # Enabled: false
+Metrics/BlockLength:
+  Enabled: false
 
 Metrics/ClassLength:
   Enabled: false
@@ -476,4 +475,7 @@ Style/IfWithSemicolon:
   Enabled: false
 
 Style/Encoding:
+  Enabled: false
+
+Style/SymbolArray
   Enabled: false
