@@ -59,10 +59,10 @@ task :contributors do
 end
 
 desc "Run syntax, lint, and spec tests."
-task :test => %i[
-  metadata_lint
-  syntax
-  lint
-  rubocop
-  spec
+task :test => [
+  :metadata_lint,
+  :syntax,
+  :lint,
+  :rubocop,
+  :spec,
 ]
