@@ -477,5 +477,5 @@ Style/IfWithSemicolon:
 Style/Encoding:
   Enabled: false
 
-Style/SymbolArray
+Style/SymbolArray:
   Enabled: false
