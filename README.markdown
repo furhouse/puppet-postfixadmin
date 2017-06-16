@@ -1,3 +1,4 @@
+[![Puppet Forge](https://img.shields.io/puppetforge/v/furhouse/postfixadmin.svg)]
 [![Build Status](https://travis-ci.org/furhouse/puppet-postfixadmin.svg?branch=master)](https://travis-ci.org/furhouse/puppet-postfixadmin)
 
 #### Table of Contents

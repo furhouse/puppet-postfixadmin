@@ -1,6 +1,6 @@
 {
-  "name": "500k-postfixadmin",
-  "version": "0.1.0",
+  "name": "furhouse-postfixadmin",
+  "version": "0.1.1",
   "author": "Wim Bonthuis <wim@500k.nl>",
   "summary": "Configures Postfix Admin",
   "license": "Apache-2.0",
