@@ -41,18 +41,13 @@ class postfixadmin (
   $version              = $postfixadmin::params::version,
   $checksum             = $postfixadmin::params::checksum,
   $checksum_type        = $postfixadmin::params::checksum_type,
-  $process              = $postfixadmin::params::process,
-
+  $archive_provider     = $postfixadmin::params::archive_provider,
   $manage_dirs          = $postfixadmin::params::manage_dirs,
   $manage_user          = $postfixadmin::params::manage_user,
   $puppet_cache         = $postfixadmin::params::puppet_cache,
   $archive_dir          = $postfixadmin::params::archive_dir,
   $install_dir          = $postfixadmin::params::install_dir,
-  $exec_paths           = $postfixadmin::params::exec_paths,
-  $document_root        = $postfixadmin::params::document_root,
-  $document_root_manage = $postfixadmin::params::document_root_manage,
-
-  $archive_provider     = $postfixadmin::params::archive_provider,
+  $process              = $postfixadmin::params::process,
 
   $configured           = false,
 
@@ -61,23 +56,20 @@ class postfixadmin (
   $db_user              = 'postfix',
   $db_pass              = 'postfix',
   $db_name              = 'postfix',
-
   $encrypt              = 'dovecot:SHA512-CRYPT',
-
   $config_file_template = undef,
   $options_hash         = {},
 ) inherits postfixadmin::params {
   validate_string($version)
   validate_string($checksum)
   validate_string($checksum_type)
-  validate_string($process)
+  validate_string($archive_provider)
   validate_bool($manage_dirs)
+  validate_bool($manage_user)
   validate_absolute_path($puppet_cache)
   validate_absolute_path($archive_dir)
   validate_absolute_path($install_dir)
-  validate_absolute_path($document_root)
-  validate_bool($document_root_manage)
-  validate_string($archive_provider)
+  validate_string($process)
   validate_bool($configured)
   validate_string($db_type)
   validate_string($db_host)
