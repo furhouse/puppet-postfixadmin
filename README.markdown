@@ -18,7 +18,7 @@
 
 ## Overview
 
-Downloads, installs and configures Postfix Admin.
+Downloads, installs and configures [Postfix Admin](http://postfixadmin.sourceforge.net/).
 
 ## Module Description
 
@@ -150,7 +150,6 @@ Creates a system user and group, for ownership of [install_dir](#install_dir)`/{
 ```
 class { '::postfixadmin':
   manage_user => false,
-}
 }
 ```
 
