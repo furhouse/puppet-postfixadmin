@@ -19,6 +19,7 @@ class postfixadmin::config inherits postfixadmin {
   }
 
   $options = merge($options_defaults, $postfixadmin::options_hash)
+  $custom_functions = $postfixadmin::custom_functions
 
   concat { $config_file:
     owner => $postfixadmin::process,
@@ -42,11 +43,23 @@ class postfixadmin::config inherits postfixadmin {
         order   => '20',
       }
     }
+    if !empty($custom_functions) {
+      concat::fragment { "${config_file}__custom_functions":
+        content => file($postfixadmin::custom_functions),
+        order   => '30',
+      }
+    }
   }
   else {
     concat::fragment { "${config_file}__header":
       content => template($postfixadmin::config_file_template),
       order   => '10',
+    }
+    if !empty($custom_functions) {
+      concat::fragment { "${config_file}__custom_functions":
+        content => file($postfixadmin::custom_functions),
+        order   => '20',
+      }
     }
   }
 

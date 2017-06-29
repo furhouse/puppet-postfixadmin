@@ -58,6 +58,7 @@ class postfixadmin (
   $db_name              = 'postfix',
   $encrypt              = 'dovecot:SHA512-CRYPT',
   $config_file_template = undef,
+  $custom_functions     = undef,
   $options_hash         = {},
 ) inherits postfixadmin::params {
   validate_string($version)

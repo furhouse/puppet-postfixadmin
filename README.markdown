@@ -309,6 +309,34 @@ Welcome to your new account.
 EOM;
 ```
 
+##### `custom_functions`
+
+You can use a file for adding custom functions to `config.local.php` file: Default: `undef`.
+
+```
+class { '::postfixadmin':
+  custom_functions => 'postfixadmin/my_custom_function.txt',
+}
+```
+
+`postfixadmin/files/my_custom_function.txt`:
+
+```
+function language_hook($PALANG, $language) {
+    switch ($language) {
+        case "de":
+            $PALANG['x_whatever'] = 'foo';
+            break;
+        case "fr":
+            $PALANG['x_whatever'] = 'bar';
+            break;
+        default:
+            $PALANG['x_whatever'] = 'foobar';
+    }
+    return $PALANG;
+}
+```
+
 ## Limitations
 
 - Requires manual seeding of database, ie `$ curl -v https://postfixadmin.example.com/setup.php`
@@ -334,4 +362,3 @@ This project uses rspec-puppet and beaker to ensure the module works as expected
 - Revisit `manage_dirs`.
 - Expand travis ruby version.
 - Automate seeding of database.
-- Publish to Forge.
