@@ -1,3 +1,15 @@
-YYYY-MM-DD Release 0.1.0
-- something you did
-- something else you did
+2011-07-02 Release 0.2.0
+- Bumped postfixadmin to version 3.1.
+- Added support for custom postfixadmin functions.
+- Moved config_file_template to custom_config_file, file based instead of template.
+- Added ruby version 2.2.7, 2.3.1 and 2.4.1 to travis.yml.
+- Moved values from init.pp to params.pp.
+- Modified init.pp for puppet-strings.
+
+2017-06-16 Release 0.1.1
+- Released module to Puppet Forge.
+- Added rspec-puppet and (meager) beaker tests.
+
+2017-06-13 Release 0.1.0
+- Initial release of postfixadmin module.
+- Installs postfixadmin-3.0.1
