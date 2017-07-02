@@ -288,17 +288,17 @@ class { '::postfixadmin':
 }
 ```
 
-##### `config_file_template`
+##### `custom_config_file`
 
-You can use a template for creating the `config.local.php` file: Default: `undef`.
+You can use a file for creating the `config.local.php` file: Default: `undef`.
 
 ```
 class { '::postfixadmin':
-  config_file_template => 'postfixadmin/my_custom_template.erb',
+  custom_config_file => 'postfixadmin/my_custom_template.txt',
 }
 ```
 
-`postfixadmin/templates/my_custom_template.erb`:
+`postfixadmin/files/my_custom_template.txt`:
 
 ```
 // Change the text between EOM.

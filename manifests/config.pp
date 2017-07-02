@@ -19,7 +19,7 @@ class postfixadmin::config inherits postfixadmin {
   }
 
   $options = merge($options_defaults, $postfixadmin::options_hash)
-  $custom_functions = $postfixadmin::custom_functions
+  $custom_functions_file = $postfixadmin::custom_functions_file
 
   concat { $config_file:
     owner => $postfixadmin::process,
@@ -31,7 +31,7 @@ class postfixadmin::config inherits postfixadmin {
     target  => $config_file,
   }
 
-  if empty($postfixadmin::config_file_template) {
+  if empty($postfixadmin::custom_config_file) {
     concat::fragment { "${config_file}__header":
       content => template("${module_name}/config/header.php.erb"),
       order   => '10',
@@ -43,21 +43,21 @@ class postfixadmin::config inherits postfixadmin {
         order   => '20',
       }
     }
-    if !empty($custom_functions) {
+    if !empty($custom_functions_file) {
       concat::fragment { "${config_file}__custom_functions":
-        content => file($postfixadmin::custom_functions),
+        content => file($postfixadmin::custom_functions_file),
         order   => '30',
       }
     }
   }
   else {
     concat::fragment { "${config_file}__header":
-      content => file($postfixadmin::config_file_template),
+      content => file($postfixadmin::custom_config_file),
       order   => '10',
     }
-    if !empty($custom_functions) {
+    if !empty($custom_functions_file) {
       concat::fragment { "${config_file}__custom_functions":
-        content => file($postfixadmin::custom_functions),
+        content => file($postfixadmin::custom_functions_file),
         order   => '20',
       }
     }
