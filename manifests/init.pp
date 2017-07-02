@@ -48,36 +48,21 @@ class postfixadmin (
   $archive_dir          = $postfixadmin::params::archive_dir,
   $install_dir          = $postfixadmin::params::install_dir,
   $process              = $postfixadmin::params::process,
-
-  $configured           = false,
-
-  $db_type              = 'mysqli',
-  $db_host              = 'localhost',
-  $db_user              = 'postfix',
-  $db_pass              = 'postfix',
-  $db_name              = 'postfix',
-  $encrypt              = 'dovecot:SHA512-CRYPT',
-  $config_file_template = undef,
-  $custom_functions     = undef,
-  $options_hash         = {},
+  $configured           = $postfixadmin::params::configured,
+  $db_type              = $postfixadmin::params::db_type,
+  $db_host              = $postfixadmin::params::db_host,
+  $db_user              = $postfixadmin::params::db_user,
+  $db_pass              = $postfixadmin::params::db_pass,
+  $db_name              = $postfixadmin::params::db_name,
+  $encrypt              = $postfixadmin::params::encrypt,
+  $config_file_template = $postfixadmin::params::config_file_template,
+  $custom_functions     = $postfixadmin::params::custom_functions,
+  $options_hash         = $postfixadmin::params::options_hash,
 ) inherits postfixadmin::params {
-  validate_string($version)
-  validate_string($checksum)
-  validate_string($checksum_type)
-  validate_string($archive_provider)
-  validate_bool($manage_dirs)
-  validate_bool($manage_user)
-  validate_absolute_path($puppet_cache)
-  validate_absolute_path($archive_dir)
-  validate_absolute_path($install_dir)
-  validate_string($process)
-  validate_bool($configured)
-  validate_string($db_type)
-  validate_string($db_host)
-  validate_string($db_user)
-  validate_string($db_pass)
-  validate_string($db_name)
-  validate_string($encrypt)
+  validate_string($version,$checksum,$checksum_type,$archive_provider,$config_file_template)
+  validate_string($custom_functions,$process,$db_type,$db_host,$db_user,$db_pass,$db_name,$encrypt)
+  validate_bool($manage_dirs,$manage_user,$configured)
+  validate_absolute_path($puppet_cache,$archive_dir,$install_dir)
   validate_hash($options_hash)
 
   class { '::postfixadmin::install': }

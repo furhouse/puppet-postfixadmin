@@ -344,7 +344,6 @@ function language_hook($PALANG, $language) {
 - Does not manage a database.
 - Does not manage PHP.
 - Does not manage SELinux.
-- This module is tested with ruby 2.1.8
 
 ## Development
 
@@ -360,5 +359,4 @@ This project uses rspec-puppet and beaker to ensure the module works as expected
 
 - Refactor for Puppet 4.
 - Revisit `manage_dirs`.
-- Expand travis ruby version.
 - Automate seeding of database.

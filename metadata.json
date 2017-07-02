@@ -2,11 +2,12 @@
   "name": "furhouse-postfixadmin",
   "version": "0.1.1",
   "author": "Wim Bonthuis <wim@500k.nl>",
-  "summary": "Configures Postfix Admin",
+  "summary": "Configures Postfix Admin, a web based administration interface for Postfix mail servers.",
   "license": "Apache-2.0",
   "source": "https://github.com/furhouse/puppet-postfixadmin",
   "project_page": "https://github.com/furhouse/puppet-postfixadmin",
   "issues_url": "https://github.com/furhouse/puppet-postfixadmin/issues",
+  "tags": [ "postfixadmin", "postfix" ],
   "dependencies": [
     {
       "name": "puppetlabs/concat",

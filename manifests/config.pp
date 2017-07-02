@@ -33,13 +33,13 @@ class postfixadmin::config inherits postfixadmin {
 
   if empty($postfixadmin::config_file_template) {
     concat::fragment { "${config_file}__header":
-      content => template('postfixadmin/config/header.php.erb'),
+      content => template("${module_name}/config/header.php.erb"),
       order   => '10',
     }
 
     if !empty($options) {
       concat::fragment { "${config_file}__options":
-        content => template('postfixadmin/config/options.php.erb'),
+        content => template("${module_name}/config/options.php.erb"),
         order   => '20',
       }
     }
@@ -52,7 +52,7 @@ class postfixadmin::config inherits postfixadmin {
   }
   else {
     concat::fragment { "${config_file}__header":
-      content => template($postfixadmin::config_file_template),
+      content => file($postfixadmin::config_file_template),
       order   => '10',
     }
     if !empty($custom_functions) {
