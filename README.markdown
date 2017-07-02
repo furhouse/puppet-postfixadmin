@@ -6,6 +6,7 @@
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with postfixadmin](#setup)
+    * [Notice](#notice)
     * [What postfixadmin affects](#what-postfixadmin-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with postfixadmin](#beginning-with-postfixadmin)
@@ -26,11 +27,17 @@ Postfix Admin provides a web interface to manage mailboxes, virtual domains and 
 
 Besides a web interface, Postfix Admin also ships with a command line interface, [postfixadmin-cli](https://github.com/postfixadmin/postfixadmin/blob/master/scripts/postfixadmin-cli).
 
+The parameter `config_file_template` has been renamed to `custom_config_file` in version `0.2.0`, and is now a file-based resource, instead of template-based.
+
 ## Setup
+
+### Notice
+
+The parameter `config_file_template` has been renamed to `custom_config_file` in version `0.2.0`, and is now a file-based resource, instead of template-based.
 
 ### What postfixadmin affects
 
-- Downloads, extracts and configures (but in a [disabled state](#configured)) Postfix Admin, version 3.0.2.
+- Downloads, extracts and configures (but in a [disabled state](#configured)) Postfix Admin, version 3.1.
 - Creates a [postfixadmin](#manage_user) user and group on Red Hat based distributions.
 - Creates the parent directories for [postfixadmin](#manage_dirs) archive and extracted files.
 
@@ -38,7 +45,7 @@ Besides a web interface, Postfix Admin also ships with a command line interface,
 
 This module expect either [camptocamp-archive or puppet-archive](#archive_provider) to be installed. Neither are specified as dependency, but camptocamp-archive is the default.
 
-By default, Postfix Admin will be extracted to [/var/cache/puppet/archive](#archive_dir) and installed in `/opt/postfixadmin-3.0.2`, based on the specified version. Both parent directories should exist (and can be managed by  setting [manage_dirs](#manage_dirs) to `true`).
+By default, Postfix Admin will be extracted to [/var/cache/puppet/archive](#archive_dir) and installed in `/opt/postfixadmin-3.1`, based on the specified version. Both parent directories should exist (and can be managed by  setting [manage_dirs](#manage_dirs) to `true`).
 
 ### Beginning with postfixadmin
 
@@ -95,21 +102,21 @@ be installed in a disabled state, since [configured](#configured) is set to
 
 ##### `version`
 
-Sets the version of Postfix Admin. Default: `3.0.2`.
+Sets the version of Postfix Admin. Default: `3.1`.
 
 ```
 class { '::postfixadmin':
-  version => '3.0.2',
+  version => '3.1',
 }
 ```
 
 ##### `checksum`
 
-Sets the checksum type, required for validating the Postfix Admin tarfile. Default: `9a4edb111258c90912aea66ad1dd684445b4f03f08f8549b9d708336ae019c8c`.
+Sets the checksum type, required for validating the Postfix Admin tarfile. Default: `36eaed433c673382fb5d513bc3b0d2685bf3169ead6065293d3a0f8f6d262aa4`.
 
 ```
 class { '::postfixadmin':
-  checksum_type => '9a4edb111258c90912aea66ad1dd684445b4f03f08f8549b9d708336ae019c8c',
+  checksum_type => '36eaed433c673382fb5d513bc3b0d2685bf3169ead6065293d3a0f8f6d262aa4',
 }
 ```
 
@@ -309,13 +316,13 @@ Welcome to your new account.
 EOM;
 ```
 
-##### `custom_functions`
+##### `custom_functions_file`
 
 You can use a file for adding custom functions to `config.local.php` file: Default: `undef`.
 
 ```
 class { '::postfixadmin':
-  custom_functions => 'postfixadmin/my_custom_function.txt',
+  custom_functions_file => 'postfixadmin/my_custom_function.txt',
 }
 ```
 
