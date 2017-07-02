@@ -4,7 +4,7 @@ describe 'postfixadmin', :type => :class do
   let(:title) { 'postfixadmin' }
   let(:rhel_user) { 'postfixadmin' }
   let(:facts) { {:concat_basedir => '/path/to/dir'} }
-  let(:current_version) { '3.0.2' }
+  let(:current_version) { '3.1' }
   let(:puppet_cache) { '/var/cache/puppet' }
   let(:archive_dir) { '/var/cache/puppet/archives' }
   let(:archive_name) { "postfixadmin-#{current_version}" }
