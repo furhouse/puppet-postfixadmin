@@ -13,6 +13,7 @@ describe 'postfixadmin', :type => :class do
   let(:installer) { "#{install_dir}/installer" }
   let(:logs_dir) { "#{install_dir}/logs" }
   let(:temp_dir) { "#{install_dir}/temp" }
+  let(:templates_c_dir) { "#{install_dir}/templates_c" }
   let(:config_file) { "#{install_dir}/config.local.php" }
   let(:config_file_header) { "#{config_file}__header" }
   let(:config_file_options_fragment) { "#{config_file}__options" }
@@ -68,6 +69,11 @@ describe 'postfixadmin', :type => :class do
               it { should contain_file(temp_dir).with_group('www-data') }
               it { should contain_file(temp_dir).with_mode('0640') }
 
+              it { should contain_file(templates_c_dir).with_ensure('directory') }
+              it { should contain_file(templates_c_dir).with_owner('www-data') }
+              it { should contain_file(templates_c_dir).with_group('www-data') }
+              it { should contain_file(templates_c_dir).with_mode('0640') }
+
             elsif facts[:os]['family'] == 'RedHat'
               it { should contain_group(rhel_user).with_ensure('present') }
               it { should contain_group(rhel_user).with_system(true) }
@@ -88,6 +94,11 @@ describe 'postfixadmin', :type => :class do
               it { should contain_file(temp_dir).with_owner(rhel_user) }
               it { should contain_file(temp_dir).with_group(rhel_user) }
               it { should contain_file(temp_dir).with_mode('0640') }
+
+              it { should contain_file(templates_c_dir).with_ensure('directory') }
+              it { should contain_file(templates_c_dir).with_owner(rhel_user) }
+              it { should contain_file(templates_c_dir).with_group(rhel_user) }
+              it { should contain_file(templates_c_dir).with_mode('0640') }
             end
           end
 
