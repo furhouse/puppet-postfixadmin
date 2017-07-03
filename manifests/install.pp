@@ -86,7 +86,7 @@ class postfixadmin::install inherits postfixadmin {
     }
   }
 
-  file { ["${target}/logs", "${target}/temp"]:
+  file { ["${target}/logs", "${target}/temp", "${target}/templates_c"]:
     ensure  => directory,
     owner   => $postfixadmin::process,
     group   => $postfixadmin::process,
